@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "muzzika-admin": {
+    "events-admin": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/muzzika-admin",
+            "outputPath": "dist/events-admin",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "muzzika-admin:build:production"
+              "browserTarget": "events-admin:build:production"
             },
             "development": {
-              "browserTarget": "muzzika-admin:build:development"
+              "browserTarget": "events-admin:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "muzzika-admin:build"
+            "browserTarget": "events-admin:build"
           }
         },
         "test": {

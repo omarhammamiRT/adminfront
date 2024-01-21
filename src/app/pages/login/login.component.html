@@ -1,0 +1,32 @@
+
+<div class="container login-form">
+    <form (ngSubmit)="submit()"  novalidate>
+        <fieldset >
+            <legend>Login to Admin Panel</legend>
+            <div class="mb-3">
+                <label for="email-input" class="form-label">Email</label>
+                <input (blur)="validateEmail()" required type="email" id="email-input" [ngClass]="{'form-control': true, 'is-valid': emailError === '', 'is-invalid': emailError !== null && emailError !== ''}" placeholder="Email" [formControl]="email">
+                <div class="invalid-feedback">
+                    {{emailError}}
+                </div>
+                <div class="valid-feedback" >
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="password-input" class="form-label" >Password</label>
+                <input (blur)="validatePassword()"  required type="password" id="password-input" placeholder="Password" [formControl]="password"  [ngClass]="{'form-control': true, 'is-valid': passwordError === '', 'is-invalid': passwordError !== null && passwordError !== ''}">
+                <div class="invalid-feedback">
+                    {{passwordError}}
+                </div>
+                <div class="valid-feedback" >
+                    Looks good!
+                </div>
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="message !== ''">
+                {{message}}
+              </div>
+            <button type="submit" class="btn btn-primary" [disabled]="loading">Submit</button>
+        </fieldset>
+    </form>
+</div>

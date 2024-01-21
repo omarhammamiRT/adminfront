@@ -1,0 +1,50 @@
+<div class="container" style="padding-top: 100px;">
+  <div class="row">
+    <ul class="col-4 nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" routerLink="/">Events</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/creators">Creators</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/sellpoints">Sellpoints</a>
+      </li>
+    </ul>
+    <div class="col-8">
+
+      <h1>Creators List</h1>
+      <hr>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="creators.length === 0 && !loading">
+            <td colspan="4" style="text-align: center;">No creators found</td>
+          </tr>
+
+          <tr *ngIf="loading">
+            <td colspan="4" style="text-align: center;">Loading...</td>
+          </tr>
+
+          <tr *ngIf="error">
+            <td colspan="4" style="text-align: center;">{{error}}</td>
+          </tr>
+
+          <tr *ngFor="let creator of creators">
+            <th scope="row">{{creator.id}}</th>
+            <td>{{creator.name}} {{creator.firstname}}</td>
+            <td>{{creator.phoneNumber}}</td>
+            <td>{{creator.email}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
