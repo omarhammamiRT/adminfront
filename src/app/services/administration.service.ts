@@ -2,6 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BACKEND_URL } from '../config/http';
 
+export enum EventStatus{
+  CONFIRMED= 'CONFIRMED',
+  REJECTED= 'REJECTED',
+  PENDING= 'PENDING'
+}
 
 export interface Creator {
   id: number;
@@ -30,8 +35,7 @@ export interface Event {
   dressCode: string;
   ticketPrice: number;
   eventDate: string;
-  isConfirmed: boolean;
-  isAccepted: boolean
+  status: EventStatus
 }
 
 @Injectable({
@@ -61,12 +65,12 @@ export class AdministrationService {
   // Confirm Event
   confirmEvent(id: number) {
     return this.http
-      .patch(BACKEND_URL  + '/event/' + id.toString(), { isAccepted: true, isConfirmed: true })
+      .patch(BACKEND_URL  + '/event/accept/' + id.toString(), {  })
   }
 
   // Reject Event
   rejectEvent(id: number) {
     return this.http
-      .patch(BACKEND_URL  + '/event/' + id.toString(), { isAccepted: true })
+      .patch(BACKEND_URL  + '/event/reject/' + id.toString(), {  })
   }
 }

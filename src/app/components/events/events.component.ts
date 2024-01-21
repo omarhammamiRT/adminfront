@@ -51,7 +51,7 @@ export class EventsComponent  implements OnInit {
     this.actionLoading = true
     this.administrationService.rejectEvent(id)
       .subscribe((event) => {
-        alert('Event canceled successfully')
+        alert('Event rejected successfully')
         this.loadEvents()
         this.actionLoading = false
       }, (error) => {

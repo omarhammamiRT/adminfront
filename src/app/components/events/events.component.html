@@ -44,16 +44,16 @@
             </td>
             <td>{{event.capacity}}</td>
             <td>{{event.ticketPrice}}</td>
-            <td *ngIf="!event.isAccepted">
+            <td *ngIf="event.status == 'PENDING'">
                 <button [disabled]="actionLoading" class="btn btn-success" style="margin-right: 10px;"
                     (click)="confirmEvent(event.id)">Accept</button>
                 <button class="btn btn-danger" (click)="rejectEvent(event.id)"
                     [disabled]="actionLoading">Reject</button>
             </td>
-            <td *ngIf="event.isAccepted && event.isConfirmed">
+            <td *ngIf="event.status == 'CONFIRMED'">
                 <span class="badge text-bg-success">Confirmed</span>
             </td>
-            <td *ngIf="event.isAccepted && !event.isConfirmed">
+            <td *ngIf="event.status == 'REJECTED'">
                 <span class="badge text-bg-danger">Not Confirmed</span>
             </td>
         </tr>
