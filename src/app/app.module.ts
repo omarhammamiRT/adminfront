@@ -13,6 +13,7 @@ import { CreatorsComponent } from './pages/creators/creators.component';
 import { SellpointsComponent } from './pages/sellpoints/sellpoints.component';
 import { NgIconsModule } from '@ng-icons/core';
 import {  bootstrapCupStraw, bootstrapPersonFillSlash, bootstrapWatch } from '@ng-icons/bootstrap-icons';
+import { AuthenticateGuard } from './services/guards/authenticate.guard';
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import {  bootstrapCupStraw, bootstrapPersonFillSlash, bootstrapWatch } from '@n
     HttpClientModule,
     NgIconsModule.withIcons({ bootstrapCupStraw, bootstrapPersonFillSlash, bootstrapWatch })
   ],
-  providers: [],
+  providers: [AuthenticateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
