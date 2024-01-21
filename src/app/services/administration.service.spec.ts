@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AdministrationService } from './creators.service';
+import { AdministrationService } from './administration.service';
 
 describe('CreatorsService', () => {
   let service: AdministrationService;
