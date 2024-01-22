@@ -12,9 +12,12 @@ import { EventsComponent } from './components/events/events.component';
 import { CreatorsComponent } from './pages/creators/creators.component';
 import { SellpointsComponent } from './pages/sellpoints/sellpoints.component';
 import { NgIconsModule } from '@ng-icons/core';
-import {  bootstrapCupStraw, bootstrapPersonFillSlash, bootstrapWatch } from '@ng-icons/bootstrap-icons';
+import {
+  bootstrapCupStraw,
+  bootstrapPersonFillSlash,
+  bootstrapWatch,
+} from '@ng-icons/bootstrap-icons';
 import { AuthenticateGuard } from './services/guards/authenticate.guard';
-
 
 @NgModule({
   declarations: [
@@ -32,9 +35,13 @@ import { AuthenticateGuard } from './services/guards/authenticate.guard';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgIconsModule.withIcons({ bootstrapCupStraw, bootstrapPersonFillSlash, bootstrapWatch })
+    NgIconsModule.withIcons({
+      bootstrapCupStraw,
+      bootstrapPersonFillSlash,
+      bootstrapWatch,
+    }),
   ],
   providers: [AuthenticateGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

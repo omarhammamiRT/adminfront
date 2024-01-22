@@ -29,7 +29,15 @@
 
         <tr *ngFor="let event of events">
             <th scope="row">{{event.id}}</th>
-            <td>{{event.name}}</td>
+            <td>
+                <span style="font-size: 20px;">
+                    {{event.name}}
+                </span>
+
+                <br>
+                By {{event.creator?.name}}
+
+            </td>
             <td>{{event.type}}</td>
             <td>{{event.address}}</td>
             <td>

@@ -1,62 +1,82 @@
 import { Component, OnInit } from '@angular/core';
-import { AdministrationService, Event } from 'src/app/services/administration.service';
+import {
+  AdministrationService,
+  Event,
+} from 'src/app/services/administration.service';
+
+interface EventData extends Event {
+  // imageSrc: string;
+}
 
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
-  styleUrls: ['./events.component.scss']
+  styleUrls: ['./events.component.scss'],
 })
-export class EventsComponent  implements OnInit {
-  constructor(private administrationService: AdministrationService) { }
+export class EventsComponent implements OnInit {
+  constructor(private administrationService: AdministrationService) {}
 
-  events: Event[] = []
-  loading = true
-  error = null
+  events: Event[] = [];
+  loading = true;
+  error = null;
 
-  actionLoading: boolean = false
+  actionLoading: boolean = false;
 
   ngOnInit(): void {
-    this.loadEvents()
+    this.loadEvents();
   }
 
   // Load events
   loadEvents() {
-    this.administrationService.getEvents()
-    .subscribe((events) => {
-      this.events = events
-      this.loading = false
-      this.error = null
-    }, (error) => {
-      this.error = error.message
-      this.loading = false
-    })
+    this.administrationService.getEvents().subscribe(
+      (events) => {
+        this.events = events;
+        this.loading = false;
+        this.error = null;
+      },
+      (error) => {
+        this.error = error.message;
+        this.loading = false;
+      }
+    );
   }
 
   // Confirm event
   confirmEvent(id: number) {
-    this.actionLoading = true
-    this.administrationService.confirmEvent(id)
-      .subscribe((event) => {
-        alert('Event confirmed successfully')
-        this.loadEvents()
-        this.actionLoading = false
-      }, (error) => {
-        alert('Error confirming event: ' + error.message)
-        this.actionLoading = false
-      })
+    this.actionLoading = true;
+    this.administrationService.confirmEvent(id).subscribe(
+      (event) => {
+        alert('Event confirmed successfully');
+        this.loadEvents();
+        this.actionLoading = false;
+      },
+      (error) => {
+        alert('Error confirming event: ' + error.message);
+        this.actionLoading = false;
+      }
+    );
   }
 
   // Cancel event
   rejectEvent(id: number) {
-    this.actionLoading = true
-    this.administrationService.rejectEvent(id)
-      .subscribe((event) => {
-        alert('Event rejected successfully')
-        this.loadEvents()
-        this.actionLoading = false
-      }, (error) => {
-        alert('Error canceling event: ' + error.message)
-        this.actionLoading = false
-      })
+    this.actionLoading = true;
+    this.administrationService.rejectEvent(id).subscribe(
+      (event) => {
+        alert('Event rejected successfully');
+        this.loadEvents();
+        this.actionLoading = false;
+      },
+      (error) => {
+        alert('Error canceling event: ' + error.message);
+        this.actionLoading = false;
+      }
+    );
+  }
+
+  // Helper functions
+  imageToBase64(image: Uint8Array) {
+    return btoa(
+      image.reduce((data, byte) => data + String.fromCharCode(byte), '')
+    );
   }
 }

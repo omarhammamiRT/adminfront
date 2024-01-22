@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BACKEND_URL } from '../config/http';
 
-export enum EventStatus{
-  CONFIRMED= 'CONFIRMED',
-  REJECTED= 'REJECTED',
-  PENDING= 'PENDING'
+export enum EventStatus {
+  CONFIRMED = 'CONFIRMED',
+  REJECTED = 'REJECTED',
+  PENDING = 'PENDING',
 }
 
 export interface Creator {
@@ -35,42 +35,43 @@ export interface Event {
   dressCode: string;
   ticketPrice: number;
   eventDate: string;
-  status: EventStatus
+  status: EventStatus;
+  creator: {
+    name: string;
+  };
+  image: {
+    // data: Buffer;
+  };
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdministrationService {
-
-  constructor(private http: HttpClient) { }
-
+  constructor(private http: HttpClient) {}
 
   // Get Creators
   getCreators() {
-    return this.http.get<Creator[]>(BACKEND_URL  + '/creator')
+    return this.http.get<Creator[]>(BACKEND_URL + '/creator');
   }
 
   // Get Sellpoints
   getSellpoints() {
-    return this.http.get<SellPoint[]>(BACKEND_URL  + '/sell-point')
+    return this.http.get<SellPoint[]>(BACKEND_URL + '/sell-point');
   }
 
   // Get Events
   getEvents() {
-    return this.http.get<Event[]>(BACKEND_URL  + '/event')
+    return this.http.get<Event[]>(BACKEND_URL + '/event');
   }
-
 
   // Confirm Event
   confirmEvent(id: number) {
-    return this.http
-      .patch(BACKEND_URL  + '/event/accept/' + id.toString(), {  })
+    return this.http.patch(BACKEND_URL + '/event/accept/' + id.toString(), {});
   }
 
   // Reject Event
   rejectEvent(id: number) {
-    return this.http
-      .patch(BACKEND_URL  + '/event/reject/' + id.toString(), {  })
+    return this.http.patch(BACKEND_URL + '/event/reject/' + id.toString(), {});
   }
 }
